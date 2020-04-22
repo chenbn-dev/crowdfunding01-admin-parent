@@ -14,10 +14,7 @@
         <module>crowdfunding03-admin-component</module>
         <module>crowdfunding04-admin-entity</module>
     </modules>
-    
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <lombok.version>1.16.18</lombok.version>
         <!-- 声明属性，对 Spring 的版本进行统一管理 -->
         <chenbonian.spring.version>4.3.20.RELEASE</chenbonian.spring.version>
         <!-- 声明属性，对 SpringSecurity 的版本进行统一管理 -->
@@ -29,7 +26,7 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
+                <version>1.16.18</version>
             </dependency>
             <!-- Spring 依赖 -->
             <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
@@ -161,20 +158,21 @@
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-web</artifactId>
-                <version>4.2.10.RELEASE</version>
+                <version>${chenbonian.spring.security.version}</version>
             </dependency>
             <!-- SpringSecurity 配置 -->
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-config</artifactId>
-                <version>4.2.10.RELEASE</version>
+                <version>${chenbonian.spring.security.version}</version>
             </dependency>
             <!-- SpringSecurity 标签库 -->
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-taglibs</artifactId>
-                <version>4.2.10.RELEASE</version>
+                <version>${chenbonian.spring.security.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
+
 </project>
