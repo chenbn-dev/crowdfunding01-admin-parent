@@ -15,6 +15,8 @@
         <module>crowdfunding04-admin-entity</module>
     </modules>
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <lombok.version>1.16.18</lombok.version>
         <!-- 声明属性，对 Spring 的版本进行统一管理 -->
         <chenbonian.spring.version>4.3.20.RELEASE</chenbonian.spring.version>
         <!-- 声明属性，对 SpringSecurity 的版本进行统一管理 -->
@@ -26,7 +28,7 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.16.18</version>
+                <version>${lombok.version}</version>
             </dependency>
             <!-- Spring 依赖 -->
             <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
@@ -174,5 +176,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 </project>
