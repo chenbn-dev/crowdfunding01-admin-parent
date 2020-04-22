@@ -134,7 +134,6 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.12</version>
-                <scope>test</scope>
             </dependency>
             <!-- 引入 Servlet 容器中相关依赖 -->
             <dependency>
