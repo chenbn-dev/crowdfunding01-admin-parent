@@ -13,11 +13,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Admin {
 
-    private int id;
-    private String loginAcct;
-    private String userPswd;
-    private String userName;
-    private String email;
-    private String createTime;
-
+  private int id;
+  private String loginAcct;
+  private String userPswd;
+  private String userName;
+  private String email;
+  private String createTime;
 }
