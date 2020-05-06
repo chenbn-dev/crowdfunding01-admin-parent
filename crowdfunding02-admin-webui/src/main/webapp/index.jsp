@@ -41,7 +41,6 @@
                 };
                 // 将JSON对象转换称为JSON字符串
                 var requestBody = JSON.stringify(student);
-
                 $.ajax({
                     "url": "send/compose/object.json",      // 请求目标资源的地址
                     "type": "post",                         // 请求方式
@@ -63,7 +62,6 @@
                 // 将 JSON 数组转换成 JSON 字符串
                 // "[5,8,12]"
                 var requestBody = JSON.stringify(array);
-
                 $.ajax({
                     "url": "send/array/three.html",    // 请求目标资源的地址
                     "type": "post",              // 请求方式
