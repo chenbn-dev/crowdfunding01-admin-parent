@@ -1,5 +1,6 @@
 package cn.chenbonian.crowdfunding.mvc.config;
 
+import cn.chenbonian.crowdfunding.constant.CrowdConstant;
 import cn.chenbonian.crowdfunding.util.CrowdUtil;
 import cn.chenbonian.crowdfunding.util.ResultEntity;
 import com.google.gson.Gson;
@@ -54,7 +55,7 @@ public class CrowdExceptionResolver {
     // 8. 如果不是Ajax请求，则先创建ModelAndView对象
     ModelAndView modelAndView = new ModelAndView();
     // 9. 将Exception对象存入模型
-    modelAndView.addObject("exception", exception);
+    modelAndView.addObject(CrowdConstant.ATTR_NAME_EXCEPTION, exception);
     // 10. 设置对应的视图名称
     modelAndView.setViewName(viewName);
     // 11. 返回modelAndView对象
