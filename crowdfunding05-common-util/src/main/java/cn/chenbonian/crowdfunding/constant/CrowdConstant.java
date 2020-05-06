@@ -9,6 +9,7 @@ public class CrowdConstant {
   public static final String MESSAGE_LOGIN_FAILED = "账号密码错误！请重新输入！";
   public static final String MESSAGE_LOGIN_ALREADY_IN_USE = "该账号已经被使用!";
   public static final String MESSAGE_ACCESS_FORBIDEN = "请登录以后再访问！";
+  public static final String MESSAGE_STRING_INVALIDATE = "输入字符不合法！请不要传入空字符串";
 
   public static final String ATTR_NAME_EXCEPTION = "exception";
 }
