@@ -3,6 +3,7 @@ package cn.chenbonian.crowdfunding.mvc.handler;
 import cn.chenbonian.crowdfunding.entity.Admin;
 import cn.chenbonian.crowdfunding.entity.Student;
 import cn.chenbonian.crowdfunding.service.api.AdminService;
+import cn.chenbonian.crowdfunding.util.ResultEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,10 @@ public class TestHandler {
   private Logger logger = LoggerFactory.getLogger(TestHandler.class);
 
   @ResponseBody
-  @RequestMapping("/send/compose/object.html")
-  public String testReceiveComposeObject(@RequestBody Student student) {
+  @RequestMapping("/send/compose/object.json")
+  public ResultEntity<Student> testReceiveComposeObject(@RequestBody Student student) {
     logger.info(student.toString());
-    return "success";
+    return ResultEntity.successWithData(student);// 将查询到的student对象封装到ResuletEntity中返回。
   }
 
   @ResponseBody

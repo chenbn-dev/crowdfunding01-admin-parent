@@ -43,16 +43,16 @@
                 var requestBody = JSON.stringify(student);
 
                 $.ajax({
-                    "url": "send/compose/object.html",    // 请求目标资源的地址
-                    "type": "post",              // 请求方式
-                    "data": requestBody,            // 要发送的请求参数
+                    "url": "send/compose/object.json",      // 请求目标资源的地址
+                    "type": "post",                         // 请求方式
+                    "data": requestBody,                    // 要发送的请求参数
                     "contentType": "application/json;charset=UTF-8", // 请求体的内容类型，告诉服务器端当前请求的请求体是 JSON 格式
-                    "dataType": "text",          // 如何对待服务器端返回的数据
-                    "success": function (response) { // 服务器端成功处理请求后调用的回调函数，response是响应体数据
-                        alert(response);
+                    "dataType": "json",                     // 如何对待服务器端返回的数据
+                    "success": function (response) {        // 服务器端成功处理请求后调用的回调函数，response是响应体数据
+                        console.log(response);
                     },
-                    "error": function (response) { // 服务器端处理请求失败后调用的回调函数
-                        alert(response);
+                    "error": function (response) {          // 服务器端处理请求失败后调用的回调函数
+                        console.log(response);
                     }
                 });
             });
