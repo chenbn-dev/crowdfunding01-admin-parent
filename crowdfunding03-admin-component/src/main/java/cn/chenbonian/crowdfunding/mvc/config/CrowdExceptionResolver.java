@@ -1,6 +1,7 @@
 package cn.chenbonian.crowdfunding.mvc.config;
 
 import cn.chenbonian.crowdfunding.constant.CrowdConstant;
+import cn.chenbonian.crowdfunding.exception.LoginFailedException;
 import cn.chenbonian.crowdfunding.util.CrowdUtil;
 import cn.chenbonian.crowdfunding.util.ResultEntity;
 import com.google.gson.Gson;
@@ -20,6 +21,15 @@ import java.io.IOException;
 // @ControllerAdvice 表示当前类是一个基于注解的异常处理器类
 @ControllerAdvice
 public class CrowdExceptionResolver {
+
+  @ExceptionHandler(value = LoginFailedException.class)
+  public ModelAndView resolveLoginFailedException(
+      LoginFailedException exception, HttpServletRequest request, HttpServletResponse response)
+      throws IOException {
+    String viewName = "admin-login";
+    // 11. 返回ModelAndView对象
+    return commonResolve(viewName, exception, request, response);
+  }
 
   // @ExceptionHandler 将一个具体的异常类型和一个方法关联起来
   @ExceptionHandler(value = NullPointerException.class)
