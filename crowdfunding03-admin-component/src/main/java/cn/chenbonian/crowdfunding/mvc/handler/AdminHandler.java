@@ -35,7 +35,7 @@ public class AdminHandler {
     // 这个方法如果能够返回admin对象，说明登录成功，如果账号密码不正确，这会抛出异常
     Admin admin = adminService.getAdminByLoginAcct(loginAcct, userPswd);
     // 将登录成功返回的admin对象存入Session域
-    session.setAttribute(CrowdConstant.MESSAGE_NAME_LOGIN_ADMIN, admin);
+    session.setAttribute(CrowdConstant.ATTR_NAME_LOGIN_ADMIN, admin);
     return "redirect:/admin/to/main/page.html";
   }
 }
