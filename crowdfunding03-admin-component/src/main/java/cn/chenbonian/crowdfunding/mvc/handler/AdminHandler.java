@@ -29,6 +29,6 @@ public class AdminHandler {
     Admin admin = adminService.getAdminByLoginAcct(loginAcct, userPswd);
     // 将登录成功返回的admin对象存入Session域
     session.setAttribute(CrowdConstant.MESSAGE_NAME_LOGIN_ADMIN, admin);
-    return "admin-main";
+    return "redirect:/admin/to/main/page.html";
   }
 }

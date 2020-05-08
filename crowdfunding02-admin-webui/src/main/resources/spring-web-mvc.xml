@@ -20,7 +20,8 @@
     </bean>
 
     <!-- 配置基于XML的异常映射 -->
-    <bean id="simpleMappingExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    <bean id="simpleMappingExceptionResolver"
+          class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <!-- 配置异常类型和具体视图页面的对应关系 -->
         <property name="exceptionMappings">
             <props>
@@ -38,5 +39,6 @@
             return "admin-login";
         }
     -->
-    <mvc:view-controller path="/admin/to/login/page.html" view-name="admin-login" />
+    <mvc:view-controller path="/admin/to/login/page.html" view-name="admin-login"/>
+    <mvc:view-controller path="/admin/to/main/page.html" view-name="admin-main"/>
 </beans>

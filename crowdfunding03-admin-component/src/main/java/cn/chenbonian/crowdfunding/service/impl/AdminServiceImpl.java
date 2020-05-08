@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
+ * Admin业务层实现类
+ *
  * @author chbn
  * @create 2020-04-29 20:02
  */
@@ -50,7 +52,7 @@ public class AdminServiceImpl implements AdminService {
     // 5.将表单提交的明文密码进行加密
     String userPswdForm = CrowdUtil.md5(userPswd);
     // 6.对密码进行比较
-    if (!Objects.equals(userPswdDB,userPswdForm)) {
+    if (!Objects.equals(userPswdDB, userPswdForm)) {
       // 7.如果比较结果不一致则抛出异常
       throw new LoginFailedException(CrowdConstant.MESSAGE_LOGIN_FAILED_WRONG_PASSWORD);
     }
