@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface AdminMapper {
+
+  List<Admin> selectAdminByKeyword(String keyword);
+
   int countByExample(AdminExample example);
 
   int deleteByExample(AdminExample example);
