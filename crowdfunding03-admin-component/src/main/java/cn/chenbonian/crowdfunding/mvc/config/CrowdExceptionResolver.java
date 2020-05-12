@@ -1,6 +1,7 @@
 package cn.chenbonian.crowdfunding.mvc.config;
 
 import cn.chenbonian.crowdfunding.constant.CrowdConstant;
+import cn.chenbonian.crowdfunding.exception.AccessForbiddenException;
 import cn.chenbonian.crowdfunding.exception.LoginFailedException;
 import cn.chenbonian.crowdfunding.util.CrowdUtil;
 import cn.chenbonian.crowdfunding.util.ResultEntity;
@@ -26,8 +27,19 @@ public class CrowdExceptionResolver {
   public ModelAndView resolveLoginFailedException(
       LoginFailedException exception, HttpServletRequest request, HttpServletResponse response)
       throws IOException {
+
     String viewName = "admin-login";
-    // 11. 返回ModelAndView对象
+
+    return commonResolve(viewName, exception, request, response);
+  }
+
+  @ExceptionHandler(value = AccessForbiddenException.class)
+  public ModelAndView resolveAccessForbiddenException(
+      AccessForbiddenException exception, HttpServletRequest request, HttpServletResponse response)
+      throws IOException {
+
+    String viewName = "admin-login";
+
     return commonResolve(viewName, exception, request, response);
   }
 

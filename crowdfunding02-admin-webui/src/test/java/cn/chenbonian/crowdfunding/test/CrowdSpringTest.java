@@ -32,6 +32,15 @@ public class CrowdSpringTest {
 
   @Autowired private AdminMapper adminMapper;
 
+  /** 向数据库插入模拟用户数据 */
+  @Test
+  public void test() {
+    for (int i = 0; i < 238; i++) {
+      adminMapper.insert(
+          new Admin(null, "loginAcct" + i, "userPswd" + i, "userName" + i, "email" + i, null));
+    }
+  }
+
   @Test
   public void testAdmin() {
     Admin admin = new Admin(null, "jerry", "123456", "杰瑞", "jerry@qq.com", null);
