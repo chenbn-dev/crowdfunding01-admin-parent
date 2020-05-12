@@ -3,15 +3,21 @@ package cn.chenbonian.crowdfunding.service.impl;
 import cn.chenbonian.crowdfunding.constant.CrowdConstant;
 import cn.chenbonian.crowdfunding.entity.Admin;
 import cn.chenbonian.crowdfunding.entity.AdminExample;
+import cn.chenbonian.crowdfunding.exception.LoginAcctAlreadyInUseException;
 import cn.chenbonian.crowdfunding.exception.LoginFailedException;
 import cn.chenbonian.crowdfunding.mapper.AdminMapper;
 import cn.chenbonian.crowdfunding.service.api.AdminService;
 import cn.chenbonian.crowdfunding.util.CrowdUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,6 +31,37 @@ import java.util.Objects;
 public class AdminServiceImpl implements AdminService {
 
   @Autowired private AdminMapper adminMapper;
+
+  private Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
+
+  @Override
+  public void saveAdmin(Admin admin) {
+    // 1.密码加密
+    String userPswd = admin.getUserPswd();
+    userPswd = CrowdUtil.md5(userPswd);
+    admin.setUserPswd(userPswd);
+    // 2.生成创建时间
+    Date date = new Date();
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String createTime = format.format(date);
+    admin.setCreateTime(createTime);
+
+    // 3.执行保存
+    try {
+      adminMapper.insert(admin);
+    } catch (Exception e) {
+      e.printStackTrace();
+      logger.info("异常全类名=" + e.getClass().getName());
+      if (e instanceof DuplicateKeyException) {
+        throw new LoginAcctAlreadyInUseException(CrowdConstant.MESSAGE_LOGIN_ACCT_ALREADY_IN_USE);
+      }
+    }
+  }
+
+  @Override
+  public void remove(Integer adminId) {
+    adminMapper.deleteByPrimaryKey(adminId);
+  }
 
   @Override
   public PageInfo<Admin> getPageInfo(String keyword, Integer pageNum, Integer pageSize) {
@@ -76,10 +113,5 @@ public class AdminServiceImpl implements AdminService {
   @Override
   public List<Admin> getAll() {
     return adminMapper.selectByExample(new AdminExample());
-  }
-
-  @Override
-  public void saveAdmin(Admin admin) {
-    adminMapper.insert(admin);
   }
 }
