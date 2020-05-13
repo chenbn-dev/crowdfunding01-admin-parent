@@ -71,13 +71,6 @@
                             style="float: right; margin-left: 10px;">
                         <i class=" glyphicon glyphicon-remove"></i> 删除
                     </button>
-                    <!--
-                    旧代码
-                    <button type="button" class="btn btn-primary"
-                        style="float: right;" onclick="window.location.href='add.html'">
-                        <i class="glyphicon glyphicon-plus"></i> 新增
-                    </button> -->
-                    <!-- 新代码 -->
                     <a style="float: right;" href="admin/to/add/page.html" class="btn btn-primary"><i
                             class="glyphicon glyphicon-plus"></i> 新增</a>
                     <br>
@@ -118,7 +111,8 @@
                                             </button> -->
                                             <!-- 新代码 -->
                                             <a href="admin/to/edit/page.html?adminId=${admin.id }&pageNum=${requestScope.pageInfo.pageNum }&keyword=${param.keyword }"
-                                               class="btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></a>
+                                               class="btn btn-primary btn-xs"><i
+                                                    class=" glyphicon glyphicon-pencil"></i></a>
                                             <a href="admin/remove/${admin.id }/${requestScope.pageInfo.pageNum }/${param.keyword }.html"
                                                class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></a>
                                         </td>

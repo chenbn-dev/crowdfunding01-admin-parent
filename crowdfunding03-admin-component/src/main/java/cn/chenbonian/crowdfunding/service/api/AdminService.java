@@ -13,6 +13,10 @@ import java.util.List;
  */
 public interface AdminService {
 
+  void update(Admin admin);
+
+  Admin getAdminById(Integer adminId);
+
   void remove(Integer adminId);
 
   PageInfo<Admin> getPageInfo(String keyword, Integer pageNum, Integer pageSize);

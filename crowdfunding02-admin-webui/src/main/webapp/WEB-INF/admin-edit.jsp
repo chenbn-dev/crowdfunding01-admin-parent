@@ -1,8 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <%@include file="/WEB-INF/include-head.jsp" %>
+
 <body>
+
 <%@ include file="/WEB-INF/include-nav.jsp" %>
 <div class="container-fluid">
     <div class="row">
@@ -11,7 +13,7 @@
             <ol class="breadcrumb">
                 <li><a href="/admin/to/main/page.html">首页</a></li>
                 <li><a href="/admin/get/page.html">数据列表</a></li>
-                <li class="active">新增</li>
+                <li class="active">更新</li>
             </ol>
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -22,31 +24,38 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form action="admin/save.html" method="post" role="form">
+                    <form action="admin/update.html" method="post" role="form">
+                        <input type="hidden" name="id" value="${requestScope.admin.id }"/>
+                        <input type="hidden" name="pageNum" value="${param.pageNum }"/>
+                        <input type="hidden" name="keyword" value="${param.keyword }"/>
                         <p>${requestScope.exception.message }</p>
                         <div class="form-group">
                             <label for="exampleInputPassword1">登录账号</label>
-                            <input name="loginAcct" type="text" class="form-control" id="exampleInputPassword1"
-                                   placeholder="请输入登录账号">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">登录密码</label>
-                            <input name="userPswd" type="text" class="form-control" id="exampleInputPassword1"
-                                   placeholder="请输入登录密码">
+                            <input
+                                    name="loginAcct"
+                                    value="${requestScope.admin.loginAcct }"
+                                    type="text" class="form-control"
+                                    id="exampleInputPassword1" placeholder="请输入登录账号">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">用户昵称</label>
-                            <input name="userName" type="text" class="form-control" id="exampleInputPassword1"
-                                   placeholder="请输入用户昵称">
+                            <input
+                                    name="userName"
+                                    value="${requestScope.admin.userName }"
+                                    type="text" class="form-control"
+                                    id="exampleInputPassword1" placeholder="请输入用户名称">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">邮箱地址</label>
-                            <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                            <input type="email"
+                                   name="email"
+                                   value="${requestScope.admin.email }" class="form-control" id="exampleInputEmail1"
                                    placeholder="请输入邮箱地址">
-                            <p class="help-block label label-warning">请输入合法的邮箱地址, 格式为：xxxx@xxxx.com</p>
+                            <p class="help-block label label-warning">请输入合法的邮箱地址, 格式为：
+                                xxxx@xxxx.com</p>
                         </div>
                         <button type="submit" class="btn btn-success">
-                            <i class="glyphicon glyphicon-plus"></i> 新增
+                            <i class="glyphicon glyphicon-edit"></i> 更新
                         </button>
                         <button type="reset" class="btn btn-danger">
                             <i class="glyphicon glyphicon-refresh"></i> 重置

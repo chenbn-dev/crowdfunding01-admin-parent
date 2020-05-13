@@ -4,6 +4,7 @@ import cn.chenbonian.crowdfunding.constant.CrowdConstant;
 import cn.chenbonian.crowdfunding.entity.Admin;
 import cn.chenbonian.crowdfunding.entity.AdminExample;
 import cn.chenbonian.crowdfunding.exception.LoginAcctAlreadyInUseException;
+import cn.chenbonian.crowdfunding.exception.LoginAcctAlreadyInUseForUpdateException;
 import cn.chenbonian.crowdfunding.exception.LoginFailedException;
 import cn.chenbonian.crowdfunding.mapper.AdminMapper;
 import cn.chenbonian.crowdfunding.service.api.AdminService;
@@ -33,6 +34,26 @@ public class AdminServiceImpl implements AdminService {
   @Autowired private AdminMapper adminMapper;
 
   private Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
+
+  @Override
+  public void update(Admin admin) {
+    // “Selective”表示有选择的更新，对于null值的字段不更新
+    try {
+      adminMapper.updateByPrimaryKeySelective(admin);
+    } catch (Exception e) {
+      e.printStackTrace();
+      logger.info("异常全类名=" + e.getClass().getName());
+      if (e instanceof DuplicateKeyException) {
+        throw new LoginAcctAlreadyInUseForUpdateException(
+            CrowdConstant.MESSAGE_LOGIN_ACCT_ALREADY_IN_USE);
+      }
+    }
+  }
+
+  @Override
+  public Admin getAdminById(Integer adminId) {
+    return adminMapper.selectByPrimaryKey(adminId);
+  }
 
   @Override
   public void saveAdmin(Admin admin) {

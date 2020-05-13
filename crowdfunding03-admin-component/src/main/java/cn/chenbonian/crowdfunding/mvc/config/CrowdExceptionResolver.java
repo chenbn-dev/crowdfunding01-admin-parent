@@ -2,6 +2,8 @@ package cn.chenbonian.crowdfunding.mvc.config;
 
 import cn.chenbonian.crowdfunding.constant.CrowdConstant;
 import cn.chenbonian.crowdfunding.exception.AccessForbiddenException;
+import cn.chenbonian.crowdfunding.exception.LoginAcctAlreadyInUseException;
+import cn.chenbonian.crowdfunding.exception.LoginAcctAlreadyInUseForUpdateException;
 import cn.chenbonian.crowdfunding.exception.LoginFailedException;
 import cn.chenbonian.crowdfunding.util.CrowdUtil;
 import cn.chenbonian.crowdfunding.util.ResultEntity;
@@ -23,13 +25,31 @@ import java.io.IOException;
 @ControllerAdvice
 public class CrowdExceptionResolver {
 
+  @ExceptionHandler(value = LoginAcctAlreadyInUseForUpdateException.class)
+  public ModelAndView resolveLoginAcctAlreadyInUseForUpdateException(
+      LoginAcctAlreadyInUseForUpdateException exception,
+      HttpServletRequest request,
+      HttpServletResponse response)
+      throws IOException {
+    String viewName = "system-error";
+    return commonResolve(viewName, exception, request, response);
+  }
+
+  @ExceptionHandler(value = LoginAcctAlreadyInUseException.class)
+  public ModelAndView resolveLoginAcctAlreadyInUseException(
+      LoginAcctAlreadyInUseException exception,
+      HttpServletRequest request,
+      HttpServletResponse response)
+      throws IOException {
+    String viewName = "admin-add";
+    return commonResolve(viewName, exception, request, response);
+  }
+
   @ExceptionHandler(value = LoginFailedException.class)
   public ModelAndView resolveLoginFailedException(
       LoginFailedException exception, HttpServletRequest request, HttpServletResponse response)
       throws IOException {
-
     String viewName = "admin-login";
-
     return commonResolve(viewName, exception, request, response);
   }
 
@@ -37,9 +57,7 @@ public class CrowdExceptionResolver {
   public ModelAndView resolveAccessForbiddenException(
       AccessForbiddenException exception, HttpServletRequest request, HttpServletResponse response)
       throws IOException {
-
     String viewName = "admin-login";
-
     return commonResolve(viewName, exception, request, response);
   }
 
