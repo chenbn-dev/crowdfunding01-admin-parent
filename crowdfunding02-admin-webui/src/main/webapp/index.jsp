@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: chen
-  Date: 2020/5/3
-  Time: 20:44
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <html>
 <head>
@@ -122,18 +115,19 @@
 </head>
 <body>
 <a href="test/ssm.html">测试SSM整合环境</a>
-    <br/>
-        <button id="btn1">Send [5,8,12] One</button>
-    <br/>
-    <br/>
-        <button id="btn2">Send [5,8,12] Two</button>
-    <br/>
-    <br/>
-        <button id="btn3">Send [5,8,12] Three</button>
-    <br/>
-    <br/>
-        <button id="btn4">Send Compose Object</button><br/>
-    <br/>
-        <button id="btn5">点我弹框</button>
+<br/>
+<button id="btn1">Send [5,8,12] One</button>
+<br/>
+<br/>
+<button id="btn2">Send [5,8,12] Two</button>
+<br/>
+<br/>
+<button id="btn3">Send [5,8,12] Three</button>
+<br/>
+<br/>
+<button id="btn4">Send Compose Object</button>
+<br/>
+<br/>
+<button id="btn5">点我弹框</button>
 </body>
 </html>

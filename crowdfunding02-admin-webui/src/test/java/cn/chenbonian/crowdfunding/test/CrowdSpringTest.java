@@ -1,7 +1,9 @@
 package cn.chenbonian.crowdfunding.test;
 
 import cn.chenbonian.crowdfunding.entity.Admin;
+import cn.chenbonian.crowdfunding.entity.Role;
 import cn.chenbonian.crowdfunding.mapper.AdminMapper;
+import cn.chenbonian.crowdfunding.mapper.RoleMapper;
 import cn.chenbonian.crowdfunding.service.api.AdminService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,10 +29,16 @@ import java.sql.SQLException;
     locations = {"classpath:spring-persist-mybatis.xml", "classpath:spring-persist-tx.xml"})
 public class CrowdSpringTest {
   @Autowired private DataSource dataSource;
-
   @Autowired private AdminService adminService;
-
   @Autowired private AdminMapper adminMapper;
+  @Autowired private RoleMapper roleMapper;
+
+  @Test
+  public void testRoleSave() {
+    for (int i = 0; i < 235; i++) {
+      roleMapper.insert(new Role(null, "role" + i));
+    }
+  }
 
   /** 向数据库插入模拟用户数据 */
   @Test
