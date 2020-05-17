@@ -5,11 +5,10 @@ import cn.chenbonian.crowdfunding.service.api.RoleService;
 import cn.chenbonian.crowdfunding.util.ResultEntity;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -17,8 +16,7 @@ import java.util.List;
  * @author chbn
  * @create 2020-05-13 22:42
  */
-@Controller
-@ResponseBody
+@RestController
 public class RoleHandler {
 
   @Autowired private RoleService roleService;

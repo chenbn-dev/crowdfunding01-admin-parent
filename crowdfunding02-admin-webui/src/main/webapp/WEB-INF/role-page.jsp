@@ -153,7 +153,7 @@
 
         // 9.给单条删除按钮绑定单击响应函数
         $("#rolePageBody").on("click", ".removeBtn", function () {
-            // 从当前按钮出发获取角色名称
+            // 从当前按钮出发获取角色名称，获取当前元素父元素的，上一个兄弟元素的文本
             var roleName = $(this).parent().prev().text();
             // 创建role对象存入数组
             var roleArray = [{

@@ -59,6 +59,6 @@ public class CrowdUtil {
     String xRequestHeader = request.getHeader("X-Requested-With");
     //
     return acceptHeader != null && acceptHeader.contains("application/json")
-        || (xRequestHeader != null && xRequestHeader.equals("XMLHttpRequest"));
+        || (xRequestHeader != null && "XMLHttpRequest".equals(xRequestHeader));
   }
 }

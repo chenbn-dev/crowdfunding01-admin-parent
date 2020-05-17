@@ -17,13 +17,13 @@
                         <a href="role/to/page.html"><i class="glyphicon glyphicon-king"></i> 角色维护</a>
                     </li>
                     <li style="height:30px;">
-                        <a href="permission.html"><i class="glyphicon glyphicon-lock"></i> 菜单维护</a>
+                        <a href="menu/to/page.html"><i class="glyphicon glyphicon-lock"></i> 菜单维护</a>
                     </li>
                 </ul>
             </li>
             <li class="list-group-item tree-closed">
-                        <span><i class="glyphicon glyphicon-ok"></i> 业务审核 <span class="badge"
-                                                                                style="float:right">3</span></span>
+                <span><i class="glyphicon glyphicon-ok"></i> 业务审核 <span class="badge"
+                                                                        style="float:right">3</span></span>
                 <ul style="margin-top:10px;display:none;">
                     <li style="height:30px;">
                         <a href="auth_cert.html"><i class="glyphicon glyphicon-check"></i> 实名认证审核</a>
