@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface AdminService {
 
+  void saveAdminRoleRelationship(Integer adminId, List<Integer> roleIdList);
+
   void update(Admin admin);
 
   Admin getAdminById(Integer adminId);

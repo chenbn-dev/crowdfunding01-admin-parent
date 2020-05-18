@@ -11,6 +11,10 @@ import java.util.List;
  */
 public interface RoleService {
 
+  List<Role> getAssignedRole(Integer adminId);
+
+  List<Role> getUnAssignedRole(Integer adminId);
+
   void removeRole(List<Integer> roleIdList);
 
   void updateRole(Role role);

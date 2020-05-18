@@ -8,6 +8,10 @@ import java.util.List;
 
 public interface RoleMapper {
 
+  List<Role> selectAssignedRole(Integer adminId);
+
+  List<Role> selectUnAssignedRole(Integer adminId);
+
   List<Role> selectRoleByKeyword(String keyword);
 
   int countByExample(RoleExample example);
