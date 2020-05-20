@@ -1,0 +1,1 @@
+CREATE TABLE inner_admin_role ( `id` INT NOT NULL AUTO_INCREMENT, `admin_id` INT, `role_id` INT, PRIMARY KEY ( `id` ) );

@@ -1,15 +1,21 @@
 package cn.chenbonian.crowdfunding.mvc.handler;
 
+import cn.chenbonian.crowdfunding.entity.Auth;
 import cn.chenbonian.crowdfunding.entity.Role;
 import cn.chenbonian.crowdfunding.service.api.AdminService;
+import cn.chenbonian.crowdfunding.service.api.AuthService;
 import cn.chenbonian.crowdfunding.service.api.RoleService;
+import cn.chenbonian.crowdfunding.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author chbn
@@ -20,8 +26,32 @@ public class AssignHandler {
 
   @Autowired private AdminService adminService;
   @Autowired private RoleService roleService;
+  @Autowired private AuthService authService;
 
-  @RequestMapping("assign/do/role/assign.json")
+  @ResponseBody
+  @RequestMapping("/assign/do/role/assign/auth.json")
+  public ResultEntity<String> saveRoleAuthRelathinship(
+      @RequestBody Map<String, List<Integer>> map) {
+    authService.saveRoleAuthRelathinship(map);
+    return ResultEntity.successWithoutData();
+  }
+
+  @ResponseBody
+  @RequestMapping("/assign/get/assigned/auth/id/by.role/id.json")
+  public ResultEntity<List<Integer>> getAssignAuthIdByRoleId(
+      @RequestParam("roleId") Integer roleId) {
+    List<Integer> authIdList = authService.getAssignAuthIdByRoleId(roleId);
+    return ResultEntity.successWithData(authIdList);
+  }
+
+  @ResponseBody
+  @RequestMapping("assign/get/all/auth.json")
+  public ResultEntity<List<Auth>> getAllAuth() {
+    List<Auth> authList = authService.getAll();
+    return ResultEntity.successWithData(authList);
+  }
+
+  @RequestMapping("/assign/do/role/assign.json")
   public String saveAdminRoleRelationship(
       @RequestParam("adminId") Integer adminId,
       @RequestParam("pageNum") Integer pageNum,
