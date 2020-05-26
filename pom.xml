@@ -38,6 +38,24 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- SpringSecurity 对 Web 应用进行权限管理 -->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-web</artifactId>
+                <version>4.2.10.RELEASE</version>
+            </dependency>
+            <!-- SpringSecurity 配置 -->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-config</artifactId>
+                <version>4.2.10.RELEASE</version>
+            </dependency>
+            <!-- SpringSecurity 标签库 -->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-taglibs</artifactId>
+                <version>4.2.10.RELEASE</version>
+            </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>

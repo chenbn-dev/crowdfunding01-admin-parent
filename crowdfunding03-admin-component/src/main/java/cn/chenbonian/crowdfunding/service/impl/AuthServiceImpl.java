@@ -19,6 +19,11 @@ public class AuthServiceImpl implements AuthService {
   @Autowired private AuthMapper authMapper;
 
   @Override
+  public List<String> getAssignAuthNameByAdminId(Integer adminId) {
+    return authMapper.selectAssignAuthNameByAdminId(adminId);
+  }
+
+  @Override
   public void saveRoleAuthRelathinship(Map<String, List<Integer>> map) {
     // 1.获取 roleId 的值
     List<Integer> roleIdList = map.get("roleId");

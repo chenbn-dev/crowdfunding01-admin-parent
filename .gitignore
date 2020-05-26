@@ -3,3 +3,5 @@
 *.iml
 /*/target/
 /out
+/pro01-spring-annotation/*/
+/pro02-spring-security/*/

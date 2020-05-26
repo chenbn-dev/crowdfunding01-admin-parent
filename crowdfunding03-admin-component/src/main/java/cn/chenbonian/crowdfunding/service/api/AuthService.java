@@ -11,6 +11,8 @@ import java.util.Map;
  */
 public interface AuthService {
 
+  List<String> getAssignAuthNameByAdminId(Integer adminId);
+
   void saveRoleAuthRelathinship(Map<String, List<Integer>> map);
 
   List<Integer> getAssignAuthIdByRoleId(Integer roleId);

@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface AuthMapper {
 
+  List<String> selectAssignAuthNameByAdminId(Integer adminId);
+
   void deleteOldRelationship(Integer roleId);
 
   void insertNewRelationship(

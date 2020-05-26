@@ -36,6 +36,16 @@ public class AdminServiceImpl implements AdminService {
   private Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
 
   @Override
+  public Admin getAdminByLoginAcct(String username) {
+    AdminExample example = new AdminExample();
+    AdminExample.Criteria criteria = example.createCriteria();
+    criteria.andLoginAcctEqualTo(username);
+    List<Admin> list = adminMapper.selectByExample(example);
+    Admin admin = list.get(0);
+    return admin;
+  }
+
+  @Override
   public void saveAdminRoleRelationship(Integer adminId, List<Integer> roleIdList) {
     // 1.根据adminId删除旧的关联关系数据
     adminMapper.deleteRelationship(adminId);
