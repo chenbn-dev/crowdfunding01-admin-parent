@@ -5,6 +5,7 @@ import cn.chenbonian.crowdfunding.service.api.RoleService;
 import cn.chenbonian.crowdfunding.util.ResultEntity;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,6 +40,7 @@ public class RoleHandler {
     return ResultEntity.successWithoutData();
   }
 
+  @PreAuthorize("hasRole('部长')")
   @RequestMapping("/role/get/page/info.json")
   public ResultEntity<PageInfo<Role>> getPageInfo(
       @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,

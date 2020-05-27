@@ -1,7 +1,6 @@
 package cn.chenbonian.crowdfunding.mvc.config;
 
 import cn.chenbonian.crowdfunding.constant.CrowdConstant;
-import cn.chenbonian.crowdfunding.exception.AccessForbiddenException;
 import cn.chenbonian.crowdfunding.exception.LoginAcctAlreadyInUseException;
 import cn.chenbonian.crowdfunding.exception.LoginAcctAlreadyInUseForUpdateException;
 import cn.chenbonian.crowdfunding.exception.LoginFailedException;
@@ -53,9 +52,9 @@ public class CrowdExceptionResolver {
     return commonResolve(viewName, exception, request, response);
   }
 
-  @ExceptionHandler(value = AccessForbiddenException.class)
+  @ExceptionHandler(value = Exception.class)
   public ModelAndView resolveAccessForbiddenException(
-      AccessForbiddenException exception, HttpServletRequest request, HttpServletResponse response)
+      Exception exception, HttpServletRequest request, HttpServletResponse response)
       throws IOException {
     String viewName = "admin-login";
     return commonResolve(viewName, exception, request, response);

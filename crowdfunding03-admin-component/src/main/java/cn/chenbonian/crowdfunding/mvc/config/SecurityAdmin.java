@@ -24,7 +24,10 @@ public class SecurityAdmin extends User {
       List<GrantedAuthority> authorities) {
     // 调用父类的构造器
     super(originalAdmin.getLoginAcct(), originalAdmin.getUserPswd(), authorities);
+
     this.originalAdmin = originalAdmin;
+    // 将原始Admin对象中的密码擦除
+    this.originalAdmin.setUserPswd(null);
   }
   // 对外提供的获取原始Admin对象的get方法
   public Admin getOriginalAdmin() {

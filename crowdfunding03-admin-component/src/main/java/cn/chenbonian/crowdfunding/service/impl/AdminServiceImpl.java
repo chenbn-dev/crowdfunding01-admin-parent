@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -32,7 +33,7 @@ import java.util.Objects;
 public class AdminServiceImpl implements AdminService {
 
   @Autowired private AdminMapper adminMapper;
-
+  @Autowired private BCryptPasswordEncoder passwordEncoder;
   private Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
 
   @Override
@@ -79,7 +80,8 @@ public class AdminServiceImpl implements AdminService {
   public void saveAdmin(Admin admin) {
     // 1.密码加密
     String userPswd = admin.getUserPswd();
-    userPswd = CrowdUtil.md5(userPswd);
+    userPswd = passwordEncoder.encode(userPswd);
+    // userPswd = CrowdUtil.md5(userPswd);
     admin.setUserPswd(userPswd);
     // 2.生成创建时间
     Date date = new Date();
@@ -98,6 +100,12 @@ public class AdminServiceImpl implements AdminService {
       }
     }
   }
+
+  //  public static void main(String[] args) {
+  //    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+  //    String str = passwordEncoder.encode("123");
+  //     System.out.println(str);
+  //  }
 
   @Override
   public void remove(Integer adminId) {
