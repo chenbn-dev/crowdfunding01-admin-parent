@@ -1,0 +1,25 @@
+student:
+  stu-id: 5
+  stu-name: chenbonian
+  graduated: false
+  subject:
+    - java
+    - web
+    - mysql
+  birthday: 1995/02/12
+  teachers:
+    java: tom
+    web: jerry
+    mysql: bob
+  address:
+    province: 甘肃
+    city: 兰州
+    street: 城关区
+
+chenbonian.best.wishes: "快乐每一天！"
+# 设置局部代码设置日志级别
+logging:
+  level:
+    cn:
+      chenbonian:
+        springboot: debug
