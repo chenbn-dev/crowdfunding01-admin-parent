@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        div {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h3>替换标签体</h3>
+<!-- 服务器解析thymeleaf代码时，会读取 th:text 属性的值，用这个值去替换原本标签体的值  -->
+<p th:text="经过服务器处理后可以看到的内容">直接在浏览器上打开时可以看到的内容</p>
+
+<!--&lt;!&ndash;  &ndash;&gt;-->
+<!--<h3>替换属性值</h3>-->
+<!--<input type="text" value="旧的值" th:value="替换后的值"/>-->
+<!--<div style="background-color: yellow" th:style="'background-color: red'"></div>-->
+
+<!--<h3>访问属性域</h3>-->
+<!--<p th:text="${attrNameRequestSocpe}">访问请求域（方式一）</p>-->
+<!--<p th:text="${#httpServletRequest.getAttribute('attrNameRequestSocpe')}">访问请求域（方式二）</p>-->
+
+<!--<h3>访问session域</h3>-->
+<!--<p th:text="${session.attrNameSessionSocpe}">访问session域</p>-->
+
+<!--<h3>访问APP域</h3>-->
+<!--<p th:text="${application.attrAPPRequestSocpe}">访问APP域</p>-->
+
+<!--<h3>获取contentPath的值</h3>-->
+<!--&lt;!&ndash;<p th:text="@{/aaa/bbb/ccc}">@{}的作用是吧contentPath的值附加到指定的地址前</p>&ndash;&gt;-->
+<!--&lt;!&ndash;<a href="../aaa/bbb/ccc.html" th:href="@{/aaa/bbb/ccc.html}">使用场景举例</a>&ndash;&gt;-->
+
+<!--<h3>直接执行表达式</h3>-->
+<!--<p>[[${attrNameRequestSocpe}}]]</p>-->
+<!--<p>[(${attrNameRequestSocpe}})]</p>-->
+
+<!--<h3>判断字符串是否为空</h3>-->
+<!--<p th:if="${not #strings.isEmpty(attrNameRequestSocpe)}">attrNameRequestSocpe不为空</p>-->
+<!--~<p th:if="${#strings.isEmpty(attrNameRequestSocpe)}">attrNameRequestSocpe为空</p>~-->
+
+
+<!--<h3>遍历集合</h3>-->
+<!--<div>-->
+<!--    <p th:text="${str}" th:each="str: ${list}"></p>-->
+<!--</div>-->
+
+<!--<h3>包含页面片段</h3>-->
+<!--&lt;!&ndash; "::" 左边的值拼前后缀后必须能够找到要包含的文件 &ndash;&gt;-->
+<!--&lt;!&ndash; "::" 右边的值是代码片段的名字 &ndash;&gt;-->
+<!--<div th:insert="~{include/part :: myFirstPart}"></div>-->
+<!--<div th:replace="~{include/part :: myFirstPart}"></div>-->
+<!--<div th:include="~{include/part :: myFirstPart}"></div>-->
+</body>
+</html>
