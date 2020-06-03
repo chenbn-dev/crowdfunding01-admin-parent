@@ -17,7 +17,9 @@ public class HumanResourceHandler {
   @RequestMapping("/consumer/get/employee")
   public Employee getEmployeeRemote() {
     //  1.声明远程微服务的主机地址加端口号
-    String host = "http://localhost:1000";
+    //    String host = "http://localhost:1000";
+    // 将远程微服务调用从“IP地址+端口号”改成“微服务名称”
+    String host = "http://provider1000";
     // 2.声明具体要调用的功能的URL地址
     String url = "/provider/get/employee/remote";
     // 3.通过RestTemplate对象远程调用微服务

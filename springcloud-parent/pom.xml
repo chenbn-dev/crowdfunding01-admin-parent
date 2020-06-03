@@ -11,6 +11,9 @@
         <module>pro01-springcloud-common</module>
         <module>pro02-springcloud-provider</module>
         <module>pro03-springcloud-consumer</module>
+        <module>pro04-springcloud-eureka-server</module>
+        <module>pro03-springcloud-feign-consumer</module>
+        <module>pro05-springcloud-dashboard</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -45,4 +48,16 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

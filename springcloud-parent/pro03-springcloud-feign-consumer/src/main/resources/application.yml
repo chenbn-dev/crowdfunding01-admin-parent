@@ -1,0 +1,14 @@
+server:
+  port: 7000
+spring:
+  application:
+    name:  atguigu-feign-consumer
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5000/eureka
+
+feign:
+  hystrix:
+    enabled: true

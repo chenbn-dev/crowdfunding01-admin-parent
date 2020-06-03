@@ -1,2 +1,15 @@
 server:
   port: 1000
+
+spring:
+  application:
+    name: provider1000 #指定微服务的名称，以便将来通过微服务名称调用当前微服务时能够找到
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5000/eureka # 配置当前微服务作为Eureka客户端访问Eureka服务端时使用的地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
