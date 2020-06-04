@@ -2,7 +2,7 @@ server:
   port: 7000
 spring:
   application:
-    name:  atguigu-feign-consumer
+    name:  feign-consumer7000
 
 eureka:
   client:

@@ -14,6 +14,7 @@
         <module>pro04-springcloud-eureka-server</module>
         <module>pro03-springcloud-feign-consumer</module>
         <module>pro05-springcloud-dashboard</module>
+        <module>pro06-springcloud-zuul</module>
     </modules>
     <packaging>pom</packaging>
 
