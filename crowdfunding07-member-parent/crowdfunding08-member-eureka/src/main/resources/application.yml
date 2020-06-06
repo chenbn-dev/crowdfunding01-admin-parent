@@ -1,0 +1,13 @@
+server:
+  port: 1000
+spring:
+  application:
+    name: member-eureka-1000
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false #自己不注册
+    fetch-registry: false       #不要从注册中心取回
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

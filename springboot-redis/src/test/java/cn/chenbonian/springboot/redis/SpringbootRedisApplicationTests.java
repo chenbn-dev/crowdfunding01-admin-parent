@@ -24,9 +24,9 @@ class SpringbootRedisApplicationTests {
     String value = "value01";
     operations.set(key, value);
 
-    //    // 3.读取刚才设置的数据
-    //    Object readValue = operations.get(key);
-    //    System.out.println(readValue);
+    // 3.读取刚才设置的数据
+    Object readValue = operations.get(key);
+    System.out.println(readValue);
   }
 
   @Autowired private RedisTemplate<Object, Object> redisTemplate;

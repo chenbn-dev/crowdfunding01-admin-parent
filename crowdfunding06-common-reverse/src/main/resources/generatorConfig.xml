@@ -46,7 +46,9 @@
         </javaClientGenerator>
 
         <!-- 数据库表名字和我们的entity类对应的映射指定 -->
-        <table tableName="t_auth" domainObjectName="Auth"/>
+        <!-- tableName数据库表名 -->
+        <!-- domainObjectName实体类类名 -->
+        <table tableName="t_member" domainObjectName="MemberPO"/>
 
     </context>
 </generatorConfiguration>

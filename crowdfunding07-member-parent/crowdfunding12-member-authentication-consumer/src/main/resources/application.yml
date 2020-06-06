@@ -1,0 +1,19 @@
+server:
+  port: 4000
+#  servlet:
+#    context-path: /aa
+spring:
+  #  http:
+  #    encoding:
+  #      force: true
+  #      charset: utf-8
+  #      enabled: true
+  application:
+    name: authentication-consumer-4000
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
