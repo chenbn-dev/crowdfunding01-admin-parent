@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * @author chbn
  * @create 2020-06-05 23:44
  */
-@FeignClient("RedisProvider3000")
+@FeignClient("redis-provider-3000")
 public interface RedisRemoteService {
   @RequestMapping("/set/redis/key/value/remote")
   ResultEntity<String> setRedisKeyValueRemote(

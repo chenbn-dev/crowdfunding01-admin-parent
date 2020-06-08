@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @create 2020-06-06 9:36
  */
 @Controller
-public class PortalHandler {
+public class  PortalHandler {
 
   @RequestMapping(value = "/", produces = "application/json;charset=utf-8")
   public String portal() {

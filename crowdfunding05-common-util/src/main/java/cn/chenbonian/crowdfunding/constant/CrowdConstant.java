@@ -16,4 +16,5 @@ public class CrowdConstant {
   public static final String ATTR_NAME_EXCEPTION = "exception";
   public static final String ATTR_NAME_LOGIN_ADMIN = "loginAdmin";
   public static final String ATTR_NAME_PAGE_INFO = "pageInfo";
+  public static final String REDIS_CODE_PREFIX = "REDIS_CODE_PREFIX_";
 }

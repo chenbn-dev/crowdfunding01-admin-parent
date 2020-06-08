@@ -34,7 +34,7 @@
                 <!-- import依赖范围表示将spring-cloud-dependencies包中的依赖信息导入 -->
                 <scope>import</scope>
             </dependency>
-<!--            <dependency>-->
+            <!--            <dependency>-->
             <!--                <groupId>org.projectlombok</groupId>-->
             <!--                <artifactId>lombok</artifactId>-->
             <!--                <version>1.16.18</version>-->
@@ -59,4 +59,17 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

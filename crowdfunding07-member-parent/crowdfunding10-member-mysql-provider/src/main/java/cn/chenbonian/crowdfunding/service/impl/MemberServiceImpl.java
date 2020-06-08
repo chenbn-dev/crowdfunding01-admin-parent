@@ -4,10 +4,11 @@ import cn.chenbonian.crowdfunding.entity.po.MemberPO;
 import cn.chenbonian.crowdfunding.entity.po.MemberPOExample;
 import cn.chenbonian.crowdfunding.mapper.MemberPOMapper;
 import cn.chenbonian.crowdfunding.service.api.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ import java.util.List;
 @Service
 @Transactional(readOnly = true)
 public class MemberServiceImpl implements MemberService {
-  @Autowired private MemberPOMapper memberPOMapper;
+  @Resource private MemberPOMapper memberPOMapper;
 
   @Override
   public MemberPO getMemberPOByLoginAcct(String loginacct) {
@@ -31,5 +32,14 @@ public class MemberServiceImpl implements MemberService {
     List<MemberPO> list = memberPOMapper.selectByExample(example);
     // 5.获取结果
     return list.get(0);
+  }
+
+  @Override
+  @Transactional(
+      propagation = Propagation.REQUIRES_NEW,
+      rollbackFor = Exception.class,
+      readOnly = false)
+  public void saveMember(MemberPO memberPO) {
+    memberPOMapper.insertSelective(memberPO);
   }
 }

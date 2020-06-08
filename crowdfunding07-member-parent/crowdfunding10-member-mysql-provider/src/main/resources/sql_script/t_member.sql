@@ -12,3 +12,4 @@ cardnum varchar(255),
 accttype int(4) comment '0 - 企业， 1 - 个体， 2 - 个人， 3 - 政府',
 primary key (id)
 );
+alter table `db_crowdfunding`.`t_member` add unique index (`loginacct`);
