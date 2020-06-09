@@ -43,15 +43,13 @@ public class CrowdUtil {
     headers.put("Authorization", "APPCODE " + appCode);
     // 封装其他参数
     Map<String, String> querys = new HashMap<>();
-    //// 测试注册功能时因为没有短信验证，先注释掉，模拟生成验证码，正式环境需要打开
-    //    // 生成验证码
-    //    StringBuilder builder = new StringBuilder();
-    //    for (int i = 0; i < 6; i++) {
-    //      int random = (int) (Math.random() * 10);
-    //      builder.append(random);
-    //    }
-    //    String code = builder.toString();
-    String code = "123456";
+    // 生成验证码
+    StringBuilder builder = new StringBuilder();
+    for (int i = 0; i < 6; i++) {
+      int random = (int) (Math.random() * 10);
+      builder.append(random);
+    }
+    String code = builder.toString();
     // 要发送的验证码，也就是模板中会变化的部分
     querys.put("param", code);
     // 收短信的手机号

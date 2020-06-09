@@ -38,6 +38,7 @@ public class MemberHandler {
     String key = CrowdConstant.REDIS_CODE_PREFIX + phoneNum;
     // 从redis读取key对应的value
     ResultEntity<String> resultEntity = redisRemoteService.getRedisStringValueByKeyRemote(key);
+    System.out.println("resultEntity：" + resultEntity.getData());
     // 检查查询操作是否有效
     String result = resultEntity.getResult();
     if (ResultEntity.FAILED.equals(result)) {
@@ -54,6 +55,7 @@ public class MemberHandler {
     if (!Objects.equals(redisCode, formCode)) {
       modelMap.addAttribute(
           CrowdConstant.ATTR_NAME_MESSAGE, CrowdConstant.MESSAGE_CODE_NOT_INVALID);
+      return "member-reg";
     }
     // 如果验证码一致，则从redis删除
     //    redisRemoteService.removeRedisKeyRemote(key);//测试注册功能时因为没有短信验证，先注释掉，正式环境需要打开
