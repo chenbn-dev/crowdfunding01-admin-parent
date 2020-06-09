@@ -14,3 +14,6 @@ zuul:
     crowd-portal:
       service-id: authentication-consumer-4000
       path: /**
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000

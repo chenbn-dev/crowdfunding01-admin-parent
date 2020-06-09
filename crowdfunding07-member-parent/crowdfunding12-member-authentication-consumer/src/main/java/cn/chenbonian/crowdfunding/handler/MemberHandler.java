@@ -1,16 +1,23 @@
 package cn.chenbonian.crowdfunding.handler;
 
+import cn.chenbonian.crowdfunding.api.MySQLRemoteService;
 import cn.chenbonian.crowdfunding.api.RedisRemoteService;
 import cn.chenbonian.crowdfunding.config.ShortMessageProperties;
 import cn.chenbonian.crowdfunding.constant.CrowdConstant;
+import cn.chenbonian.crowdfunding.entity.po.MemberPO;
+import cn.chenbonian.crowdfunding.entity.vo.MemberVO;
 import cn.chenbonian.crowdfunding.util.CrowdUtil;
 import cn.chenbonian.crowdfunding.util.ResultEntity;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -21,6 +28,59 @@ import java.util.concurrent.TimeUnit;
 public class MemberHandler {
   @Autowired private ShortMessageProperties shortMessageProperties;
   @Autowired private RedisRemoteService redisRemoteService;
+  @Autowired private MySQLRemoteService mySQLRemoteService;
+
+  @RequestMapping("auth/do/member/register")
+  public String register(MemberVO memberVO, ModelMap modelMap) {
+    // 获取用户输入的手机号
+    String phoneNum = memberVO.getPhoneNum();
+    // 拼redis中存储验证码的key
+    String key = CrowdConstant.REDIS_CODE_PREFIX + phoneNum;
+    // 从redis读取key对应的value
+    ResultEntity<String> resultEntity = redisRemoteService.getRedisStringValueByKeyRemote(key);
+    // 检查查询操作是否有效
+    String result = resultEntity.getResult();
+    if (ResultEntity.FAILED.equals(result)) {
+      modelMap.addAttribute(CrowdConstant.ATTR_NAME_MESSAGE, resultEntity.getMessage());
+      return "member-reg";
+    }
+    String redisCode = resultEntity.getData();
+    if (redisCode == null) {
+      modelMap.addAttribute(CrowdConstant.ATTR_NAME_MESSAGE, CrowdConstant.MESSAGE_CODE_NOT_EXISTS);
+      return "member-reg";
+    }
+    // 如果从redis能够查询到value，则比较表单的验证码和redis验证码
+    String formCode = memberVO.getCode();
+    if (!Objects.equals(redisCode, formCode)) {
+      modelMap.addAttribute(
+          CrowdConstant.ATTR_NAME_MESSAGE, CrowdConstant.MESSAGE_CODE_NOT_INVALID);
+    }
+    // 如果验证码一致，则从redis删除
+    redisRemoteService.removeRedisKeyRemote(key);
+    //    ResultEntity<String> removeResultEntity = redisRemoteService.removeRedisKeyRemote(key);
+    //    if (ResultEntity.FAILED.equals(removeResultEntity.getResult())) {
+    //     //如果删除失败，则尝试重新删除一次，若再次删除依旧失败，则不在进行删除，记录到日志中，人工去处理
+    //      return "";
+    //    }
+    // 执行密码加密
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    String usrepswdBeforeEncode = memberVO.getUserpswd();
+    String usrepswdAfterEncode = passwordEncoder.encode(usrepswdBeforeEncode);
+    memberVO.setUserpswd(usrepswdAfterEncode);
+    // 执行保存
+    // 创建MemberPO对象
+    MemberPO memberPO = new MemberPO();
+    // 复制属性
+    BeanUtils.copyProperties(memberVO, memberPO);
+    // 调用远程的方法
+    ResultEntity<String> saveMemberResultEntity = mySQLRemoteService.saveMember(memberPO);
+    if (ResultEntity.FAILED.equals(saveMemberResultEntity.getResult())) {
+      modelMap.addAttribute(CrowdConstant.ATTR_NAME_MESSAGE, saveMemberResultEntity.getMessage());
+      return "member-reg";
+    }
+
+    return "member-login";
+  }
 
   @ResponseBody
   @RequestMapping("auth/member/send/short/message.json")
