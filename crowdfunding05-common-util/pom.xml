@@ -13,7 +13,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.15</version>
+            <version>1.2.25.sec10</version>
         </dependency>
         <!-- 当前环境本身就有httpclient和jetty-util的依赖，这里不写版本号就能够使用已有的版本，避免因为版本号不一致而产生冲突 -->
         <dependency>
