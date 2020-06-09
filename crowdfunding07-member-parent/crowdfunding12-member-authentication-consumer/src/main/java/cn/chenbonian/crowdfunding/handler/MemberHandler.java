@@ -56,7 +56,7 @@ public class MemberHandler {
           CrowdConstant.ATTR_NAME_MESSAGE, CrowdConstant.MESSAGE_CODE_NOT_INVALID);
     }
     // 如果验证码一致，则从redis删除
-    redisRemoteService.removeRedisKeyRemote(key);
+    //    redisRemoteService.removeRedisKeyRemote(key);//测试注册功能时因为没有短信验证，先注释掉，正式环境需要打开
     //    ResultEntity<String> removeResultEntity = redisRemoteService.removeRedisKeyRemote(key);
     //    if (ResultEntity.FAILED.equals(removeResultEntity.getResult())) {
     //     //如果删除失败，则尝试重新删除一次，若再次删除依旧失败，则不在进行删除，记录到日志中，人工去处理

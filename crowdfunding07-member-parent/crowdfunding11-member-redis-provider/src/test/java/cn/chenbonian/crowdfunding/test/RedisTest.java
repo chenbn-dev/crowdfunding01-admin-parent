@@ -1,5 +1,6 @@
 package cn.chenbonian.crowdfunding.test;
 
+import cn.chenbonian.crowdfunding.constant.CrowdConstant;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,12 @@ public class RedisTest {
   @Test
   public void testSet() {
     ValueOperations<String, String> operations = redisTemplate.opsForValue();
-    operations.set("apple", "red");
+    operations.set(CrowdConstant.REDIS_CODE_PREFIX+"18153971786", "123456");
   }
 
   @Test
   public void testExSet() {
     ValueOperations<String, String> operations = redisTemplate.opsForValue();
-    operations.set("banana", "yellow", 5000, TimeUnit.DAYS);
+    operations.set(CrowdConstant.REDIS_CODE_PREFIX+"18153971786", "123456", 500, TimeUnit.DAYS);
   }
 }
