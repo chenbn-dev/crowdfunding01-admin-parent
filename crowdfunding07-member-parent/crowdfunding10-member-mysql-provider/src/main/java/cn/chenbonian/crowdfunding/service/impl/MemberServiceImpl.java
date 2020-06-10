@@ -30,7 +30,10 @@ public class MemberServiceImpl implements MemberService {
     criteria.andLoginacctEqualTo(loginacct);
     // 4.执行查询
     List<MemberPO> list = memberPOMapper.selectByExample(example);
-    // 5.获取结果
+    // 5.
+    if (list == null || list.size() == 0) {
+      return null;
+    }
     return list.get(0);
   }
 

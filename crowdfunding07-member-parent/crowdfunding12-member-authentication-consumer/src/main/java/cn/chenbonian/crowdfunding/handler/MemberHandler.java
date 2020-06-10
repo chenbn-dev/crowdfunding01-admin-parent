@@ -5,6 +5,7 @@ import cn.chenbonian.crowdfunding.api.RedisRemoteService;
 import cn.chenbonian.crowdfunding.config.ShortMessageProperties;
 import cn.chenbonian.crowdfunding.constant.CrowdConstant;
 import cn.chenbonian.crowdfunding.entity.po.MemberPO;
+import cn.chenbonian.crowdfunding.entity.vo.MemberLoginVO;
 import cn.chenbonian.crowdfunding.entity.vo.MemberVO;
 import cn.chenbonian.crowdfunding.util.CrowdUtil;
 import cn.chenbonian.crowdfunding.util.ResultEntity;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -30,6 +32,68 @@ public class MemberHandler {
   @Autowired private RedisRemoteService redisRemoteService;
   @Autowired private MySQLRemoteService mySQLRemoteService;
 
+  /**
+   * 用户退出登录
+   *
+   * @param session
+   * @return
+   */
+  @RequestMapping("/auth/member/logout")
+  public String logout(HttpSession session) {
+    session.invalidate();
+    return "redirect:/";
+  }
+  /**
+   * 用户登录方法
+   *
+   * @param longinacct 账号
+   * @param userpswd 密码
+   * @param modelMap
+   * @param session
+   * @return
+   */
+  @RequestMapping("/auth/member/do/login")
+  public String login(
+      @RequestParam("loginacct") String longinacct,
+      @RequestParam("userpswd") String userpswd,
+      ModelMap modelMap,
+      HttpSession session) {
+    // 1.调用远程接口，根据登录账号查询MemberPO对象
+    ResultEntity<MemberPO> resultEntity =
+        mySQLRemoteService.getMemberPOByLoginAcctRemote(longinacct);
+    if (ResultEntity.FAILED.equals(resultEntity.getResult())) {
+      modelMap.addAttribute(CrowdConstant.ATTR_NAME_MESSAGE, resultEntity.getMessage());
+      return "member-login";
+    }
+    MemberPO memberPO = resultEntity.getData();
+    if (memberPO == null) {
+      modelMap.addAttribute(
+          CrowdConstant.ATTR_NAME_MESSAGE, CrowdConstant.MESSAGE_LOGIN_FAILED_NO_SUSH_USER);
+      return "member-login";
+    }
+    // 2.比较密码
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    String userpswdDataBase = memberPO.getUserpswd();
+    boolean matcheResult = passwordEncoder.matches(userpswd, userpswdDataBase);
+    if (!matcheResult) {
+      modelMap.addAttribute(
+          CrowdConstant.ATTR_NAME_MESSAGE, CrowdConstant.MESSAGE_LOGIN_FAILED_WRONG_PASSWORD);
+      return "member-login";
+    }
+    // 创建MemberLoginVO对象存入Session域
+    MemberLoginVO memberLoginVO =
+        new MemberLoginVO(memberPO.getId(), memberPO.getUsername(), memberPO.getEmail());
+    session.setAttribute(CrowdConstant.ATTR_NAME_LOGIN_MEMBER, memberLoginVO);
+    return "redirect:/auth/member/to/center/page";
+  }
+
+  /**
+   * 用户注册账号方法
+   *
+   * @param memberVO 用户传过来的表单数据封装的VO对象
+   * @param modelMap
+   * @return
+   */
   @RequestMapping("auth/do/member/register")
   public String register(MemberVO memberVO, ModelMap modelMap) {
     // 获取用户输入的手机号
@@ -38,7 +102,6 @@ public class MemberHandler {
     String key = CrowdConstant.REDIS_CODE_PREFIX + phoneNum;
     // 从redis读取key对应的value
     ResultEntity<String> resultEntity = redisRemoteService.getRedisStringValueByKeyRemote(key);
-    System.out.println("resultEntity：" + resultEntity.getData());
     // 检查查询操作是否有效
     String result = resultEntity.getResult();
     if (ResultEntity.FAILED.equals(result)) {
@@ -80,10 +143,16 @@ public class MemberHandler {
       modelMap.addAttribute(CrowdConstant.ATTR_NAME_MESSAGE, saveMemberResultEntity.getMessage());
       return "member-reg";
     }
-
-    return "member-login";
+    // 使用重定向，避免刷新浏览器重新执行注册流程
+    return "redirect:/auth/member/to/login/page";
   }
 
+  /**
+   * 用户发送短信验证的方法
+   *
+   * @param phoneNum 用户输入手机号
+   * @return
+   */
   @ResponseBody
   @RequestMapping("auth/member/send/short/message.json")
   public ResultEntity<String> sendMessage(@RequestParam("phoneNum") String phoneNum) {

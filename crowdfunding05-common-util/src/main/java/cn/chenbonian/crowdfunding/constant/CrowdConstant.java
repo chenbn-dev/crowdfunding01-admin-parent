@@ -18,6 +18,7 @@ public class CrowdConstant {
 
   public static final String ATTR_NAME_EXCEPTION = "exception";
   public static final String ATTR_NAME_LOGIN_ADMIN = "loginAdmin";
+  public static final String ATTR_NAME_LOGIN_MEMBER = "loginMember";
   public static final String ATTR_NAME_PAGE_INFO = "pageInfo";
   public static final String ATTR_NAME_MESSAGE = "message";
 
