@@ -94,7 +94,7 @@ public class MemberHandler {
    * @param modelMap
    * @return
    */
-  @RequestMapping("auth/do/member/register")
+  @RequestMapping("/auth/do/member/register")
   public String register(MemberVO memberVO, ModelMap modelMap) {
     // 获取用户输入的手机号
     String phoneNum = memberVO.getPhoneNum();
@@ -154,7 +154,7 @@ public class MemberHandler {
    * @return
    */
   @ResponseBody
-  @RequestMapping("auth/member/send/short/message.json")
+  @RequestMapping("/auth/member/send/short/message.json")
   public ResultEntity<String> sendMessage(@RequestParam("phoneNum") String phoneNum) {
     // 1.发送验证码到phoneName手机
     ResultEntity<String> sendMessageResultEntity =

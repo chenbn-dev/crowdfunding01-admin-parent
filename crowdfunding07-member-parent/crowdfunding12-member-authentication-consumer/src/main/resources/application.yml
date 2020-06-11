@@ -10,6 +10,10 @@ spring:
   #      enabled: true
   application:
     name: authentication-consumer-4000
+  redis:
+    host: 39.104.117.161
+  session:
+    store-type: redis
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html

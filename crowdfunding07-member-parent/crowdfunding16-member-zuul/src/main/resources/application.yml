@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: zuul-80
+  redis:
+    host: 39.104.117.161
+  session:
+    store-type: redis
 eureka:
   client:
     service-url:
