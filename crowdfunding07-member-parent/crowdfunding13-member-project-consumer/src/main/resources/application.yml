@@ -1,0 +1,23 @@
+server:
+  port: 5000
+spring:
+  application:
+    name: project-consumer-5000
+  redis:
+    host: 39.104.117.161
+  session:
+    store-type: redis
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
+aliyun:
+  oss:
+    access-key-id:
+    access-key-secret:
+    bucket-domain:
+    bucket-name:
+    end-point:

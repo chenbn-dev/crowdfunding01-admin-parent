@@ -84,7 +84,7 @@ public class MemberHandler {
     MemberLoginVO memberLoginVO =
         new MemberLoginVO(memberPO.getId(), memberPO.getUsername(), memberPO.getEmail());
     session.setAttribute(CrowdConstant.ATTR_NAME_LOGIN_MEMBER, memberLoginVO);
-    return "redirect:/auth/member/to/center/page";
+    return "redirect:http://localhost/auth/member/to/center/page";
   }
 
   /**
@@ -144,7 +144,7 @@ public class MemberHandler {
       return "member-reg";
     }
     // 使用重定向，避免刷新浏览器重新执行注册流程
-    return "redirect:/auth/member/to/login/page";
+    return "redirect:http://localhost/auth/member/to/login/page";
   }
 
   /**
