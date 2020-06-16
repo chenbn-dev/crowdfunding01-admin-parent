@@ -4,10 +4,7 @@ import cn.chenbonian.crowdfunding.entity.po.MemberConfirmInfoPO;
 import cn.chenbonian.crowdfunding.entity.po.MemberLaunchInfoPO;
 import cn.chenbonian.crowdfunding.entity.po.ProjectPO;
 import cn.chenbonian.crowdfunding.entity.po.ReturnPO;
-import cn.chenbonian.crowdfunding.entity.vo.MemberConfirmInfoVO;
-import cn.chenbonian.crowdfunding.entity.vo.MemberLauchInfoVO;
-import cn.chenbonian.crowdfunding.entity.vo.ProjectVO;
-import cn.chenbonian.crowdfunding.entity.vo.ReturnVO;
+import cn.chenbonian.crowdfunding.entity.vo.*;
 import cn.chenbonian.crowdfunding.mapper.*;
 import cn.chenbonian.crowdfunding.service.api.ProjectService;
 import org.springframework.beans.BeanUtils;
@@ -113,5 +110,10 @@ public class ProjectServiceImpl implements ProjectService {
     BeanUtils.copyProperties(memberConfirmInfoVO, memberConfirmInfoPO);
     memberConfirmInfoPO.setMemberid(memberId);
     memberConfirmInfoPOMapper.insert(memberConfirmInfoPO);
+  }
+
+  @Override
+  public List<PortalTypeVO> getPortalTypeVO() {
+    return projectPOMapper.selectPortalTypeVOList();
   }
 }

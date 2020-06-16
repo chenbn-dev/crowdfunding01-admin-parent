@@ -1,143 +1,143 @@
 package cn.chenbonian.crowdfunding.entity.po;
 
 public class ProjectPO {
-    private Integer id;
+  private Integer id;
 
-    private String projectName;
+  private String projectName;
 
-    private String projectDescription;
+  private String projectDescription;
 
-    private Long money;
+  private Integer money;
 
-    private Integer day;
+  private Integer day;
 
-    private Integer status;
+  private Integer status;
 
-    private String deploydate;
+  private String deploydate;
 
-    private Long supportmoney;
+  private Long supportmoney;
 
-    private Integer supporter;
+  private Integer supporter;
 
-    private Integer completion;
+  private Integer completion;
 
-    private Integer memberid;
+  private Integer memberid;
 
-    private String createdate;
+  private String createdate;
 
-    private Integer follower;
+  private Integer follower;
 
-    private String headerPicturePath;
+  private String headerPicturePath;
 
-    public Integer getId() {
-        return id;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public String getProjectName() {
-        return projectName;
-    }
+  public String getProjectName() {
+    return projectName;
+  }
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName == null ? null : projectName.trim();
-    }
+  public void setProjectName(String projectName) {
+    this.projectName = projectName == null ? null : projectName.trim();
+  }
 
-    public String getProjectDescription() {
-        return projectDescription;
-    }
+  public String getProjectDescription() {
+    return projectDescription;
+  }
 
-    public void setProjectDescription(String projectDescription) {
-        this.projectDescription = projectDescription == null ? null : projectDescription.trim();
-    }
+  public void setProjectDescription(String projectDescription) {
+    this.projectDescription = projectDescription == null ? null : projectDescription.trim();
+  }
 
-    public Long getMoney() {
-        return money;
-    }
+  public Integer getMoney() {
+    return money;
+  }
 
-    public void setMoney(Long money) {
-        this.money = money;
-    }
+  public void setMoney(Integer money) {
+    this.money = money;
+  }
 
-    public Integer getDay() {
-        return day;
-    }
+  public Integer getDay() {
+    return day;
+  }
 
-    public void setDay(Integer day) {
-        this.day = day;
-    }
+  public void setDay(Integer day) {
+    this.day = day;
+  }
 
-    public Integer getStatus() {
-        return status;
-    }
+  public Integer getStatus() {
+    return status;
+  }
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+  public void setStatus(Integer status) {
+    this.status = status;
+  }
 
-    public String getDeploydate() {
-        return deploydate;
-    }
+  public String getDeploydate() {
+    return deploydate;
+  }
 
-    public void setDeploydate(String deploydate) {
-        this.deploydate = deploydate == null ? null : deploydate.trim();
-    }
+  public void setDeploydate(String deploydate) {
+    this.deploydate = deploydate == null ? null : deploydate.trim();
+  }
 
-    public Long getSupportmoney() {
-        return supportmoney;
-    }
+  public Long getSupportmoney() {
+    return supportmoney;
+  }
 
-    public void setSupportmoney(Long supportmoney) {
-        this.supportmoney = supportmoney;
-    }
+  public void setSupportmoney(Long supportmoney) {
+    this.supportmoney = supportmoney;
+  }
 
-    public Integer getSupporter() {
-        return supporter;
-    }
+  public Integer getSupporter() {
+    return supporter;
+  }
 
-    public void setSupporter(Integer supporter) {
-        this.supporter = supporter;
-    }
+  public void setSupporter(Integer supporter) {
+    this.supporter = supporter;
+  }
 
-    public Integer getCompletion() {
-        return completion;
-    }
+  public Integer getCompletion() {
+    return completion;
+  }
 
-    public void setCompletion(Integer completion) {
-        this.completion = completion;
-    }
+  public void setCompletion(Integer completion) {
+    this.completion = completion;
+  }
 
-    public Integer getMemberid() {
-        return memberid;
-    }
+  public Integer getMemberid() {
+    return memberid;
+  }
 
-    public void setMemberid(Integer memberid) {
-        this.memberid = memberid;
-    }
+  public void setMemberid(Integer memberid) {
+    this.memberid = memberid;
+  }
 
-    public String getCreatedate() {
-        return createdate;
-    }
+  public String getCreatedate() {
+    return createdate;
+  }
 
-    public void setCreatedate(String createdate) {
-        this.createdate = createdate == null ? null : createdate.trim();
-    }
+  public void setCreatedate(String createdate) {
+    this.createdate = createdate == null ? null : createdate.trim();
+  }
 
-    public Integer getFollower() {
-        return follower;
-    }
+  public Integer getFollower() {
+    return follower;
+  }
 
-    public void setFollower(Integer follower) {
-        this.follower = follower;
-    }
+  public void setFollower(Integer follower) {
+    this.follower = follower;
+  }
 
-    public String getHeaderPicturePath() {
-        return headerPicturePath;
-    }
+  public String getHeaderPicturePath() {
+    return headerPicturePath;
+  }
 
-    public void setHeaderPicturePath(String headerPicturePath) {
-        this.headerPicturePath = headerPicturePath == null ? null : headerPicturePath.trim();
-    }
+  public void setHeaderPicturePath(String headerPicturePath) {
+    this.headerPicturePath = headerPicturePath == null ? null : headerPicturePath.trim();
+  }
 }

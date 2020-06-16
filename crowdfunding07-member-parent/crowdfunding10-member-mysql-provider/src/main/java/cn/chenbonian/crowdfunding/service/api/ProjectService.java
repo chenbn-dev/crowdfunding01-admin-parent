@@ -1,6 +1,9 @@
 package cn.chenbonian.crowdfunding.service.api;
 
+import cn.chenbonian.crowdfunding.entity.vo.PortalTypeVO;
 import cn.chenbonian.crowdfunding.entity.vo.ProjectVO;
+
+import java.util.List;
 
 /**
  * @author chbn
@@ -9,4 +12,6 @@ import cn.chenbonian.crowdfunding.entity.vo.ProjectVO;
 public interface ProjectService {
 
   void saveProject(ProjectVO projectVO, Integer memberId);
+
+  List<PortalTypeVO> getPortalTypeVO();
 }

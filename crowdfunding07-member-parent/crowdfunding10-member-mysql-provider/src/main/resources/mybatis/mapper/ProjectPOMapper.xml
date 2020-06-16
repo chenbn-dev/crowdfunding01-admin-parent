@@ -17,6 +17,21 @@
         <result column="follower" property="follower" jdbcType="INTEGER"/>
         <result column="header_picture_path" property="headerPicturePath" jdbcType="VARCHAR"/>
     </resultMap>
+    <resultMap id="loadPortalProjectListResultMap" type="cn.chenbonian.crowdfunding.entity.vo.PortalTypeVO">
+        <!-- 分类数据的常规属性 -->
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="remark" property="remark"/>
+        <!-- 分类数据中包含的项目数据的 List -->
+        <!-- property 属性：对应 PortalTypeVO 中分类数据中的项目数据的 List 属性 -->
+        <!-- column 属性：接下来查询项目时需要用到分类 id，就是通过 column 属性把值传入-->
+        <!-- ofType 属性：项目数据的实体类型 PortalProjectVO -->
+        <collection
+                property="portalProjectVOList"
+                column="id"
+                ofType="cn.chenbonian.crowdfunding.entity.vo.PortalProjectVO"
+                select="cn.chenbonian.crowdfunding.mapper.ProjectPOMapper.selectPortalProjectVOList"/>
+    </resultMap>
     <sql id="Example_Where_Clause">
         <where>
             <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -81,6 +96,7 @@
     id, project_name, project_description, money, day, status, deploydate, supportmoney, 
     supporter, completion, memberid, createdate, follower, header_picture_path
   </sql>
+
     <select id="selectByExample" resultMap="BaseResultMap"
             parameterType="cn.chenbonian.crowdfunding.entity.po.ProjectPOExample">
         select
@@ -96,6 +112,32 @@
             order by ${orderByClause}
         </if>
     </select>
+    <select id="selectPortalTypeVOList" resultMap="loadPortalProjectListResultMap">
+        select id,name,remark from t_type
+    </select>
+    <select id="selectPortalProjectVOList"
+            resultType="cn.chenbonian.crowdfunding.entity.vo.PortalProjectVO">
+        SELECT
+            t_project.id projectId,
+            project_name projectName,
+            money,
+            deploydate deployDate,
+            supportmoney/money*100 percentage,
+            supporter supporter,
+            header_picture_path headerPicturePath
+        FROM
+            t_project
+        LEFT JOIN
+            t_project_type
+        ON
+            t_project.id=t_project_type.projectid
+        WHERE
+            t_project_type.typeid=#{ id }
+        ORDER BY
+            t_project.id
+        DESC
+            LIMIT 0,4
+</select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
