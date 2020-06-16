@@ -7,6 +7,11 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface ProjectItemPicPOMapper {
+
+  void insertPathList(
+      @Param("projectId") Integer projectId,
+      @Param("detailPicturePathList") List<String> detailPicturePathList);
+
   int countByExample(ProjectItemPicPOExample example);
 
   int deleteByExample(ProjectItemPicPOExample example);
@@ -22,7 +27,7 @@ public interface ProjectItemPicPOMapper {
   ProjectItemPicPO selectByPrimaryKey(Integer id);
 
   int updateByExampleSelective(
-          @Param("record") ProjectItemPicPO record, @Param("example") ProjectItemPicPOExample example);
+      @Param("record") ProjectItemPicPO record, @Param("example") ProjectItemPicPOExample example);
 
   int updateByExample(
       @Param("record") ProjectItemPicPO record, @Param("example") ProjectItemPicPOExample example);

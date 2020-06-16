@@ -7,6 +7,12 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface ReturnPOMapper {
+
+
+
+  void insertReturnPOBatch(
+      @Param("returnPOList") List<ReturnPO> returnPOList, @Param("projectId") Integer projectId);
+
   int countByExample(ReturnPOExample example);
 
   int deleteByExample(ReturnPOExample example);
