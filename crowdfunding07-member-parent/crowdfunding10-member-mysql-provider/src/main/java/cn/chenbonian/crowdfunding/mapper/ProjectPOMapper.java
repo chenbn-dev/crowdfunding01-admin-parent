@@ -2,7 +2,7 @@ package cn.chenbonian.crowdfunding.mapper;
 
 import cn.chenbonian.crowdfunding.entity.po.ProjectPO;
 import cn.chenbonian.crowdfunding.entity.po.ProjectPOExample;
-import cn.chenbonian.crowdfunding.entity.vo.PortalProjectVO;
+import cn.chenbonian.crowdfunding.entity.vo.DetailProjectVO;
 import cn.chenbonian.crowdfunding.entity.vo.PortalTypeVO;
 import org.apache.ibatis.annotations.Param;
 
@@ -42,5 +42,5 @@ public interface ProjectPOMapper {
 
   List<PortalTypeVO> selectPortalTypeVOList();
 
-  List<PortalProjectVO> selectPortalProjectVOList();
+  DetailProjectVO selectDetailProjectVO(Integer projectId);
 }

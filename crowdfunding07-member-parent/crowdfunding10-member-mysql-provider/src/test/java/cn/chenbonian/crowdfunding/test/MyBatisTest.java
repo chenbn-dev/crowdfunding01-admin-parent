@@ -2,6 +2,7 @@ package cn.chenbonian.crowdfunding.test;
 
 import cn.chenbonian.crowdfunding.entity.po.MemberPO;
 import cn.chenbonian.crowdfunding.mapper.MemberPOMapper;
+import cn.chenbonian.crowdfunding.mapper.ProjectPOMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -26,7 +28,10 @@ public class MyBatisTest {
 
   @Autowired private MemberPOMapper memberPOMapper;
 
+  @Resource private ProjectPOMapper projectPOMapper;
   private Logger logger = LoggerFactory.getLogger(MyBatisTest.class);
+
+
 
   @Test
   public void testMapper() {

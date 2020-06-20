@@ -2,9 +2,7 @@ package cn.chenbonian.crowdfunding.handler;
 
 import cn.chenbonian.crowdfunding.constant.CrowdConstant;
 import cn.chenbonian.crowdfunding.entity.po.MemberPO;
-import cn.chenbonian.crowdfunding.entity.vo.ProjectVO;
 import cn.chenbonian.crowdfunding.service.api.MemberService;
-import cn.chenbonian.crowdfunding.service.api.ProjectService;
 import cn.chenbonian.crowdfunding.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -20,20 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MemberProviderHandler {
   @Autowired private MemberService memberService;
-  @Autowired private ProjectService projectService;
-
-  @RequestMapping("/save/project/vo/remote")
-  public ResultEntity<String> saveProjectVORemote(
-      @RequestBody ProjectVO projectVO, @RequestParam("memberId") Integer memberId) {
-    try {
-      // 调用“本地”Service 执行保存
-      projectService.saveProject(projectVO, memberId);
-      return ResultEntity.successWithoutData();
-    } catch (Exception e) {
-      e.printStackTrace();
-      return ResultEntity.failed(e.getMessage());
-    }
-  }
 
   @RequestMapping("/save/member/remote")
   public ResultEntity<String> saveMember(@RequestBody MemberPO memberPO) {

@@ -17,21 +17,6 @@
         <result column="follower" property="follower" jdbcType="INTEGER"/>
         <result column="header_picture_path" property="headerPicturePath" jdbcType="VARCHAR"/>
     </resultMap>
-    <resultMap id="loadPortalProjectListResultMap" type="cn.chenbonian.crowdfunding.entity.vo.PortalTypeVO">
-        <!-- 分类数据的常规属性 -->
-        <id column="id" property="id"/>
-        <result column="name" property="name"/>
-        <result column="remark" property="remark"/>
-        <!-- 分类数据中包含的项目数据的 List -->
-        <!-- property 属性：对应 PortalTypeVO 中分类数据中的项目数据的 List 属性 -->
-        <!-- column 属性：接下来查询项目时需要用到分类 id，就是通过 column 属性把值传入-->
-        <!-- ofType 属性：项目数据的实体类型 PortalProjectVO -->
-        <collection
-                property="portalProjectVOList"
-                column="id"
-                ofType="cn.chenbonian.crowdfunding.entity.vo.PortalProjectVO"
-                select="cn.chenbonian.crowdfunding.mapper.ProjectPOMapper.selectPortalProjectVOList"/>
-    </resultMap>
     <sql id="Example_Where_Clause">
         <where>
             <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -112,6 +97,61 @@
             order by ${orderByClause}
         </if>
     </select>
+    <resultMap type="cn.chenbonian.crowdfunding.entity.vo.DetailProjectVO" id="loadProjectDetailResultMap">
+        <id column="id" property="projectId"/>
+        <result column="project_name" property="projectName"/>
+        <result column="project_description" property="projectDesc"/>
+        <result column="money" property="money"/>
+        <result column="status" property="status"/>
+        <result column="day" property="day"/>
+        <result column="deploydate" property="deployDate"/>
+        <result column="supportmoney" property="supportMoney"/>
+        <result column="follower" property="followerCount"/>
+        <result column="supporter" property="supporterCount"/>
+        <result column="header_picture_path" property="headerPicturePath"/>
+        <collection
+                property="detailPicturePathList"
+                select="cn.chenbonian.crowdfunding.mapper.ProjectPOMapper.selectDetailPicturePath"
+                column="id"/>
+
+        <collection
+                property="detailReturnVOList"
+                select="cn.chenbonian.crowdfunding.mapper.ProjectPOMapper.selectDeatailReturnVO"
+                column="id"/>
+    </resultMap>
+    <select id="selectDetailProjectVO" resultMap="loadProjectDetailResultMap">
+		select
+			id,
+			project_name,
+			project_description ,
+			money,
+			status,
+			day,
+			deploydate,
+			supportmoney,
+			supporter,
+			supportmoney/money*100 percentage,
+			follower,
+			header_picture_path
+		from
+			t_project
+		where id=#{projectId}
+	</select>
+    <resultMap id="loadPortalProjectListResultMap" type="cn.chenbonian.crowdfunding.entity.vo.PortalTypeVO">
+        <!-- 分类数据的常规属性 -->
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="remark" property="remark"/>
+        <!-- 分类数据中包含的项目数据的 List -->
+        <!-- property 属性：对应 PortalTypeVO 中分类数据中的项目数据的 List 属性 -->
+        <!-- column 属性：接下来查询项目时需要用到分类 id，就是通过 column 属性把值传入-->
+        <!-- ofType 属性：项目数据的实体类型 PortalProjectVO -->
+        <collection
+                property="portalProjectVOList"
+                column="id"
+                ofType="cn.chenbonian.crowdfunding.entity.vo.PortalProjectVO"
+                select="cn.chenbonian.crowdfunding.mapper.ProjectPOMapper.selectPortalProjectVOList"/>
+    </resultMap>
     <select id="selectPortalTypeVOList" resultMap="loadPortalProjectListResultMap">
         select id,name,remark from t_type
     </select>

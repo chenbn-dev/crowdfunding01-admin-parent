@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * @author chbn
  * @create 2020-06-16
@@ -12,11 +14,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PortalTypeVO {
-  private Integer projectId;
-  private String projectName;
-  private String headerPicturePath;
-  private Integer money;
-  private String deployDate;
-  private Integer percentage;
-  private Integer supporter;
+
+  private Integer id;
+  private String name;
+  private String remark;
+
+  private List<PortalProjectVO> portalProjectVOList;
 }
