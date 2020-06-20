@@ -2,8 +2,11 @@ package cn.chenbonian.crowdfunding.service.impl;
 
 import cn.chenbonian.crowdfunding.entity.po.AddressPO;
 import cn.chenbonian.crowdfunding.entity.po.AddressPOExample;
+import cn.chenbonian.crowdfunding.entity.po.OrderPO;
+import cn.chenbonian.crowdfunding.entity.po.OrderProjectPO;
 import cn.chenbonian.crowdfunding.entity.vo.AddressVO;
 import cn.chenbonian.crowdfunding.entity.vo.OrderProjectVO;
+import cn.chenbonian.crowdfunding.entity.vo.OrderVO;
 import cn.chenbonian.crowdfunding.mapper.AddressPOMapper;
 import cn.chenbonian.crowdfunding.mapper.OrderPOMapper;
 import cn.chenbonian.crowdfunding.mapper.OrderProjectPOMapper;
@@ -66,5 +69,32 @@ public class OrderServiceImpl implements OrderService {
     BeanUtils.copyProperties(addressVO, addressPO);
 
     addressPOMapper.insert(addressPO);
+  }
+
+  @Transactional(
+      readOnly = false,
+      propagation = Propagation.REQUIRES_NEW,
+      rollbackFor = Exception.class)
+  @Override
+  public void saveOrder(OrderVO orderVO) {
+
+    OrderPO orderPO = new OrderPO();
+
+    BeanUtils.copyProperties(orderVO, orderPO);
+
+    OrderProjectPO orderProjectPO = new OrderProjectPO();
+
+    BeanUtils.copyProperties(orderVO.getOrderProjectVO(), orderProjectPO);
+
+    // 保存orderPO自动生成的主键是orderProjectPO需要用到的外键
+    orderPOMapper.insert(orderPO);
+
+    // 从orderPO中获取orderId
+    Integer id = orderPO.getId();
+
+    // 将orderId设置到orderProjectPO
+    orderProjectPO.setOrderId(id);
+
+    orderProjectPOMapper.insert(orderProjectPO);
   }
 }

@@ -1,5 +1,5 @@
 -- 订单表
-CREATE TABLE `project_crowd`.`t_order`
+CREATE TABLE `db_crowdfunding`.`t_order`
 (
 `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键',
 `order_num` CHAR(100) COMMENT '订单号',
@@ -13,7 +13,7 @@ PRIMARY KEY (`id`)
 );
 
 -- 收货地址表
-CREATE TABLE `project_crowd`.`t_address`
+CREATE TABLE `db_crowdfunding`.`t_address`
 (
 `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键',
 `receive_name` CHAR(100) COMMENT '收件人',
@@ -24,7 +24,7 @@ PRIMARY KEY (`id`)
 );
 
 -- 项目信息表
-CREATE TABLE `project_crowd`.`t_order_project`
+CREATE TABLE `db_crowdfunding`.`t_order_project`
 (
 `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键',
 `project_name` CHAR(200) COMMENT '项目名称',

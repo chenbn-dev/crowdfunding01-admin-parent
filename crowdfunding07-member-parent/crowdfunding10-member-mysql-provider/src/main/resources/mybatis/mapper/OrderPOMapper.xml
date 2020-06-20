@@ -106,7 +106,8 @@
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="cn.chenbonian.crowdfunding.entity.po.OrderPO">
+    <insert id="insert" parameterType="cn.chenbonian.crowdfunding.entity.po.OrderPO"
+            useGeneratedKeys="true" keyProperty="id">
     insert into t_order (id, order_num, pay_order_num, 
       order_amount, invoice, invoice_title, 
       order_remark, address_id)
