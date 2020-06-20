@@ -1,4 +1,4 @@
-package cn.chenbonian.crowdfunding.entity;
+package cn.chenbonian.crowdfunding.entity.po;
 
 public class AddressPO {
     private Integer id;

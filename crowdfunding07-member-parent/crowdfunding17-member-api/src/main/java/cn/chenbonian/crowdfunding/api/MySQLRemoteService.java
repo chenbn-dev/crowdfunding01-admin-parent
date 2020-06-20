@@ -1,9 +1,7 @@
 package cn.chenbonian.crowdfunding.api;
 
 import cn.chenbonian.crowdfunding.entity.po.MemberPO;
-import cn.chenbonian.crowdfunding.entity.vo.DetailProjectVO;
-import cn.chenbonian.crowdfunding.entity.vo.PortalTypeVO;
-import cn.chenbonian.crowdfunding.entity.vo.ProjectVO;
+import cn.chenbonian.crowdfunding.entity.vo.*;
 import cn.chenbonian.crowdfunding.util.ResultEntity;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,4 +34,14 @@ public interface MySQLRemoteService {
   @RequestMapping("/get/project/detail/remote/{projectId}")
   public ResultEntity<DetailProjectVO> getDetailProjectVORemote(
       @PathVariable("projectId") Integer projectId);
+
+  @RequestMapping("/get/order/project/vo/remote")
+  ResultEntity<OrderProjectVO> getOrderProjectVORemote(
+      @RequestParam("projectId") Integer projectId, @RequestParam("returnId") Integer returnId);
+
+  @RequestMapping("/get/address/vo/remote")
+  ResultEntity<List<AddressVO>> getAddressVORemote(@RequestParam("memberId") Integer memberId);
+
+  @RequestMapping("/save/address/remote")
+  ResultEntity<String> saveAddressRemote(@RequestBody AddressVO addressVO);
 }

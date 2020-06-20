@@ -22,7 +22,7 @@ zuul:
       service-id: project-consumer-5000
       path: /project/**
     crowd-order:
-      service-id: order-crowd-6000
+      service-id: order-crowd-7000
       path: /order/**
 ribbon:
   ReadTimeout: 10000

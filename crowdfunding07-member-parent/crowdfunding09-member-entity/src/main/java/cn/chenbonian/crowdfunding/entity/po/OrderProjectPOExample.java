@@ -1,4 +1,4 @@
-package cn.chenbonian.crowdfunding.entity;
+package cn.chenbonian.crowdfunding.entity.po;
 
 import java.util.ArrayList;
 import java.util.List;

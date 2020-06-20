@@ -1,8 +1,8 @@
 server:
-  port: 6000
+  port: 7000
 spring:
   application:
-    name: order-crowd-6000
+    name: order-crowd-7000
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html

@@ -1,9 +1,11 @@
 package cn.chenbonian.crowdfunding.mapper;
 
-import cn.chenbonian.crowdfunding.entity.AddressPO;
-import cn.chenbonian.crowdfunding.entity.AddressPOExample;
-import java.util.List;
+
+import cn.chenbonian.crowdfunding.entity.po.AddressPO;
+import cn.chenbonian.crowdfunding.entity.po.AddressPOExample;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface AddressPOMapper {
     int countByExample(AddressPOExample example);
