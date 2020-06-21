@@ -45,5 +45,15 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
-
+    <!-- Maven 构建过程相关配置 -->
+    <build>
+        <!-- 构建过程中所需要用到的插件 -->
+        <plugins>
+            <!-- 这个插件将 SpringBoot 应用打包成一个可执行的 jar 包 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
