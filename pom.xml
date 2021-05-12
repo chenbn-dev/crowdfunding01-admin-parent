@@ -33,7 +33,7 @@
         <!-- 声明属性，对 Spring 的版本进行统一管理 -->
         <chenbonian.spring.version>4.3.20.RELEASE</chenbonian.spring.version>
         <!-- 声明属性，对 SpringSecurity 的版本进行统一管理 -->
-        <chenbonian.spring.security.version>4.2.10.RELEASE</chenbonian.spring.security.version>
+        <chenbonian.spring.security.version>5.2.10.RELEASE</chenbonian.spring.security.version>
     </properties>
 
     <dependencyManagement>
@@ -42,7 +42,7 @@
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-web</artifactId>
-                <version>4.2.10.RELEASE</version>
+                <version>5.2.10.RELEASE</version>
             </dependency>
             <!-- SpringSecurity 配置 -->
             <dependency>
