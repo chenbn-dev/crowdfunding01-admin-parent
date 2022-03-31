@@ -31,7 +31,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <lombok.version>1.16.18</lombok.version>
         <!-- 声明属性，对 Spring 的版本进行统一管理 -->
-        <chenbonian.spring.version>4.3.20.RELEASE</chenbonian.spring.version>
+        <chenbonian.spring.version>5.3.18</chenbonian.spring.version>
         <!-- 声明属性，对 SpringSecurity 的版本进行统一管理 -->
         <chenbonian.spring.security.version>4.2.10.RELEASE</chenbonian.spring.security.version>
     </properties>
